@@ -17,7 +17,7 @@ public struct FIRDataResult {
     let jsonData: String?
     
     /// Initialize FIRDataResult instance
-    init(UID: String, jsonData: String?) {
+    init(UID: String = UUID().uuidString, jsonData: String?) {
         self.UID = UID
         self.jsonData = jsonData
     }
@@ -32,6 +32,12 @@ public struct FIRDataResult {
 extension FIRDataResult {
     /// Initialize FIRDataResult instance from DataSnapShot of Firebase
     init(dataSnapShot: DataSnapshot) {
-        self.init(UID: UUID().uuidString, jsonData: dataSnapShot.json)
+        self.init(jsonData: dataSnapShot.json)
+    }
+}
+
+extension FIRDataResult {
+    public init(jsonString: String) {
+        self.init(jsonData: jsonString)
     }
 }
