@@ -14,24 +14,24 @@ public struct FIRDataResult {
     let UID: String
     
     /// Data of DataSnapShot of Firebase as Json string
-    let jsonString: String?
+    let jsonData: String?
     
     /// Initialize FIRDataResult instance
-    init(UID: String, jsonString: String?) {
+    init(UID: String, jsonData: String?) {
         self.UID = UID
-        self.jsonString = jsonString
+        self.jsonData = jsonData
     }
     
     /// Converting data of FIRDataResult instance to dictionary
     /// - returns: a dictionary as [String: Any]
-    func toDictionary() -> [String: Any]? {
-        return self.jsonString?.convertToDictionary()
+    public func toDictionary() -> [String: Any]? {
+        return self.jsonData?.convertToDictionary()
     }
 }
 
 extension FIRDataResult {
     /// Initialize FIRDataResult instance from DataSnapShot of Firebase
     init(dataSnapShot: DataSnapshot) {
-        self.init(UID: UUID().uuidString, jsonString: dataSnapShot.json)
+        self.init(UID: UUID().uuidString, jsonData: dataSnapShot.json)
     }
 }
